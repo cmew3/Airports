@@ -11,12 +11,19 @@ class Airport
 		@planes	
 	end
 
-	def land plane
-		@planes << plane
+	def accept plane
+		unless self.full?
+			plane.land
+			@planes << plane
+		end
 	end
 
+
 	def release plane
+		raise "That plane isn't at this airport" unless planes.include?(plane)
+		plane.take_off
 		@planes.delete(plane)
+
 	end
 
 	def capacity

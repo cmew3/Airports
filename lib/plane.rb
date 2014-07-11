@@ -11,10 +11,12 @@ class Plane
 
 	def land
 		@flying = false
+		self
 	end
 
 	def take_off
 		@flying = true
+		self
 	end
 
 end
