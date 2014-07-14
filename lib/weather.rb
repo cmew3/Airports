@@ -1,11 +1,13 @@
 module WeatherRegion
 
+	STORM_PROBABILITY_DENOMINATOR = 3
+	
 	def stormy?
 		@stormy ||= false
 	end
 
 	def check_weather
-		random_weather_generator = Kernel.rand(10)	
+		random_weather_generator = Kernel.rand(STORM_PROBABILITY_DENOMINATOR)	
 		if random_weather_generator == 0
 			@stormy = true
 		else
