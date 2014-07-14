@@ -4,7 +4,6 @@ class Plane
 		@flying = true
 	end
 
-	# attribute getter
 	def flying?
 		@flying
 	end

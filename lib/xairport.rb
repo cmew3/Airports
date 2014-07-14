@@ -17,6 +17,12 @@ include WeatherRegion
 		@planes	||= []
 	end
 
+	def clear_for_landing plane
+		if landing_checks_completed? plane
+		dock plane
+		end
+	end	
+
 	def landing_checks_completed? (plane)
 		return puts "Plane is already grounded" unless plane.flying?
 		self.check_weather
@@ -25,18 +31,17 @@ include WeatherRegion
 		true
 	end
 
-	def clear_for_landing plane
-		if landing_checks_completed? plane
-		land plane
-		end
-	end	
-
-	def land plane
+	def dock plane
 		plane.land
 		@planes << plane
 		puts "Plane has landed"
 	end
 
+	def clear_for_take_off plane
+		if take_off_checks_completed? plane
+		release plane
+		end	
+	end
 	
 	def take_off_checks_completed? plane
 		return puts "That plane isn't at this airport" unless planes.include?(plane)
@@ -45,18 +50,11 @@ include WeatherRegion
 		true
 	end	
 
-	def clear_for_take_off plane
-		if take_off_checks_completed? plane
-		launch plane
-		end	
-	end
-
-	def launch plane
+	def release plane
 		plane.take_off
 		@planes.delete(plane)
 		puts "Plane has taken-off"
 	end
-
 
 	def capacity
 		@capacity
@@ -68,6 +66,31 @@ include WeatherRegion
 	
 	def full?
 		plane_count == capacity
+	end
+
+	def keep_requesting_land plane
+		while plane.flying?
+			self.clear_for_landing(plane)
+		end
+	end
+
+
+	def dock_all planes
+		planes.each do |plane|
+			keep_requesting_land(plane)
+		end
+	end
+
+	def keep_requesting_take_off plane
+			while plane.flying? == false
+				clear_for_take_off(plane)
+			end
+		end
+
+	def release_all_planes	
+		while plane_count > 0
+			keep_requesting_take_off planes.last
+		end 
 	end
 
 end

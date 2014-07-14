@@ -1,6 +1,6 @@
 module WeatherRegion
 
-	STORM_PROBABILITY_DENOMINATOR = 3
+	STORM_PROBABILITY_DENOMINATOR = 10
 	
 	def stormy?
 		@stormy ||= false
