@@ -6,24 +6,25 @@ Ruby program to control the flow of planes at airports. Planes can either be fly
 CRCs
 --------
 
-<p>Plane</p>
+###Plane
 
 | Responsibility        | Collaborator |
 | --------------------- | ------------ |
-| is flying/not flying  |              |
-| takes off 			|  			   |
-| lands				    |  			   |
+| Knows whether it is flying |              |
+| Takes off 			|  			   |
+| Lands				    |  			   |
 
-<p>Airport</p>
+###Airport
 
 | Responsibility | Collaborator |
 |----------------|--------------|
-| knows what | Planes it has|
-| has a capacity |  |
-| can dock a  | Plane  |
-| can release a | Plane   |
-| checks whether  | a Plane can land  |
-| checks whether | a Plane can take off  |
-| knows what the weather is | |
-| knows when it is full | |
+| Knows what | Planes it has|
+| Has a capacity |  |
+| Can dock a  | Plane  |
+| Can release a | Plane   |
+| Checks whether  | a Plane can land  |
+| Checks whether | a Plane can take off  |
+| Knows whether it is stormy | |
+| Randomly generated storms | |
+| Knows when it is full | |
 
