@@ -18,34 +18,30 @@ include WeatherRegion
 	end
 
 	def clear_for_landing plane
-		if landing_checks_completed? plane
-		dock plane
-		end
+		dock plane if landing_checks_completed?(plane)
 	end	
 
 	def landing_checks_completed? (plane)
 		return puts "Plane is already grounded" unless plane.flying?
-		self.check_weather
 		return  puts "Cannot land due to inclement weather" if stormy?
 		return puts "No space available at the airport" if self.full?
 		true
 	end
 
 	def dock plane
-		plane.land
-		@planes << plane
 		puts "Plane has landed"
+
+		# plane.land
+		(@planes << plane.land).last
+		# puts "Plane has landed"
 	end
 
 	def clear_for_take_off plane
-		if take_off_checks_completed? plane
-		release plane
-		end	
+		release plane if take_off_checks_completed?(plane)
 	end
 	
 	def take_off_checks_completed? plane
 		return puts "That plane isn't at this airport" unless planes.include?(plane)
-		self.check_weather
 		return puts "Cannot take-off due to inclement weather" if stormy?
 		true
 	end	

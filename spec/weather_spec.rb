@@ -7,13 +7,11 @@ shared_examples 'a weather region' do
 
 	it 'returns stormy weather when number generated is 0' do
 		expect(Kernel).to receive(:rand).with(WeatherRegion::STORM_PROBABILITY_DENOMINATOR).and_return(0)
-		location.check_weather
 		expect(location).to be_stormy
 	end
 
 	it 'returns stormy weather when number generated is 1' do
 		expect(Kernel).to receive(:rand).with(WeatherRegion::STORM_PROBABILITY_DENOMINATOR).and_return(1)
-		location.check_weather
 		expect(location).not_to be_stormy
 	end
 

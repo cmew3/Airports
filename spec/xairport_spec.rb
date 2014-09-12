@@ -18,8 +18,10 @@ describe Airport do
 	context 'when docking and releasing planes' do
 	
 		it 'can dock a plane' do
-			airport.dock(flying_plane)
-			expect(airport.planes).to eq [flying_plane]
+			plane = double :plane
+			allow(plane).to receive(:land).and_return(plane)
+			airport.dock(plane)
+			expect(airport.planes).to eq [plane]
 		end
 
 		it 'a plane lands when the airport docks it' do
@@ -69,10 +71,6 @@ describe Airport do
 	context 'weather' do
 
 		it_behaves_like 'a weather region'
-
-		it 'is not stormy when created' do
-			expect(airport).not_to be_stormy
-		end
 
 	end
 
